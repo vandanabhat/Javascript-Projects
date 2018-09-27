@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS + JS Clock</title>
+    <style>
+        body {
+            background: #f6f6f6;
+            height: 100%;
+            width: 100%;
+        }
+        .clock-wrapper {
+            position: absolute;
+            top:50%;
+            left:50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            height: 300px;
+            border: 20px solid #bcbcbc;
+            border-radius: 50%;
+            background: #efefef;
+            padding: 3px;
+            box-shadow: 0 25px 46px -6px rgba(96, 96, 96, 0.91);
+        }
+        .hand {
+            position: absolute;
+            top: 50%;
+            margin-left: 10px;
+            width: calc(50% - 10px);
+            height: 2px;
+            background: black;
+            transform-origin: 100%;
+            transform: rotate(90deg);
+            border-radius: 5px;
+            /*transition: all 0.6s;*/
+        }
+        .sec-hand {
+            background: red;
+            z-index: 100;
+        }
+        .min-hand {
+            margin-left: 35px;
+            width: calc(50% - 35px);
+            z-index: 10;
+        }
+        .hr-hand {
+            height: 4px;
+            background: #767676;
+            margin-left: 50px;
+            width: calc(50% - 50px);
+        }
+        .clock-number .number{
+            width: 15px;
+            height: 96%;
+            font-size: 20px;
+            font-weight: 600;
+            position: absolute;
+            left:calc(50% - 7px);
+        }
+
+        .number1 {
+           transform: rotate(30deg);
+        }
+        .number1 > div {
+            transform: rotate(-30deg);
+        }
+        .number2 {
+            transform: rotate(60deg);
+        }
+        .number2 > div {
+            transform: rotate(-60deg);
+        }
+        .number3 {
+            transform: rotate(90deg);
+        }
+        .number3 > div {
+            transform: rotate(-90deg);
+        }
+        .number4 {
+            transform: rotate(120deg);
+        }
+        .number4 > div {
+            transform: rotate(-120deg);
+        }
+        .number5 {
+            transform: rotate(150deg);
+        }
+        .number5 > div {
+            transform: rotate(-150deg);
+        }
+        .number6 {
+            transform: rotate(180deg);
+        }
+        .number6 > div {
+            transform: rotate(-180deg);
+        }
+        .number7 {
+            transform: rotate(210deg);
+        }
+        .number7 > div {
+            transform: rotate(-210deg);
+        }
+        .number8 {
+             transform: rotate(240deg);
+         }
+        .number8 > div {
+            transform: rotate(-240deg);
+        }
+        .number9 {
+             transform: rotate(270deg);
+         }
+        .number9 > div {
+            transform: rotate(-270deg);
+        }
+        .number10 {
+             transform: rotate(300deg);
+         }
+        .number10 > div {
+            transform: rotate(-300deg);
+        }
+        .number11 {
+             transform: rotate(330deg);
+         }
+        .number11 > div {
+            transform: rotate(-330deg);
+        }
+
+    </style>
+</head>
+<body>
+<div class="clock-wrapper">
+    <div class="clock-number">
+        <div class="number number1">
+            <div>1</div>
+        </div>
+        <div class="number number2">
+            <div>2</div>
+        </div>
+        <div class="number number3">
+            <div>3</div>
+        </div>
+        <div class="number number4">
+            <div>4</div>
+        </div>
+        <div class="number number5">
+            <div>5</div>
+        </div>
+        <div class="number number6">
+            <div>6</div>
+        </div>
+        <div class="number number7">
+            <div>7</div>
+        </div>
+        <div class="number number8">
+            <div>8</div>
+        </div>
+        <div class="number number9">
+            <div>9</div>
+        </div>
+        <div class="number number10">
+            <div>10</div>
+        </div>
+        <div class="number number11">
+            <div>11</div>
+        </div>
+        <div class="number number12">
+            <div>12</div>
+        </div>
+    </div>
+    <div class="hands">
+        <div class="hand min-hand"></div>
+        <div class="hand sec-hand"></div>
+        <div class="hand hr-hand"></div>
+    </div>
+</div>
+  <script>
+        function setClock(){
+            var now = new Date();
+            var secondsDeg = (now.getSeconds() * 6) + 90;
+            document.querySelector('.sec-hand').style.transform = 'rotate('+secondsDeg+'deg)';
+            var minDeg = (now.getMinutes() * 6) + 90;
+            document.querySelector('.min-hand').style.transform = 'rotate('+minDeg+'deg)';
+            var hr = now.getHours();
+            var hrDeg = ( (hr > 12 ? hr -12: hr) * 30) + (now.getMinutes()/2) + 90;
+            document.querySelector('.hr-hand').style.transform = 'rotate('+hrDeg+'deg)';
+            console.log(hrDeg+"  "+(hr > 12 ? hr -12: hr))
+
+        }
+        setInterval(setClock,1000);
+        setClock();
+   </script>
+</body>
+</html>
